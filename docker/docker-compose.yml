@@ -1,0 +1,9 @@
+services:
+    fpm:
+        env_file:
+            - php-variables.env
+        build: php-fpm-dev
+        volumes:
+            - ~/.ssh:/root/.ssh
+            - ../api:/var/www/app/
+        working_dir: /var/www/app/

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         bootstrap="tests/bootstrap.php"
+         forceCoversAnnotation="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <coverage>
+        <include>
+            <directory suffix=".php">src/</directory>
+            <directory suffix=".php">plugins/*/src/</directory>
+        </include>
+        <exclude>
+            <file>src/Console/Installer.php</file>
+        </exclude>
+        <report>
+            <html outputDirectory="tmp/test-coverage" lowUpperBound="70" highLowerBound="90"/>
+        </report>
+    </coverage>
+
+    <php>
+        <ini name="memory_limit" value="-1"/>
+        <ini name="apc.enable_cli" value="1"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="app">
+            <directory>tests/TestCase/</directory>
+        </testsuite>
+
+        <testsuite name="erp">
+            <directory>plugins/ERP/tests/TestCase/</directory>
+        </testsuite>
+
+        <testsuite name="users">
+            <directory>plugins/Users/tests/TestCase/</directory>
+        </testsuite>
+
+        <testsuite name="utility">
+            <directory>plugins/Utility/tests/TestCase/</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="Cake\TestSuite\Fixture\FixtureInjector">
+            <arguments>
+                <object class="Cake\TestSuite\Fixture\FixtureManager"/>
+            </arguments>
+        </listener>
+    </listeners>
+</phpunit>
